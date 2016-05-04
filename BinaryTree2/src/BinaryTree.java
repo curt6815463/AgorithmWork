@@ -7,12 +7,12 @@ public class BinaryTree
 		 Pattern pattern = Pattern.compile("[0-9]*");
 		 return pattern.matcher(str).matches();
 	}
+	int k = 0;
 	public float sum(Node n)
 	{
 		float x,y;
 		if(isNum(n.name))
 		{
-			
 			return Float.parseFloat(n.name);
 		}
 		if (n.name.equals("+"))
