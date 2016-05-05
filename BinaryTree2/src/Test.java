@@ -1,59 +1,53 @@
 
-import java.util.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
 
 public class Test {
 
 	public static void main(String[] args) {		
-		String input = "((1000+(5*2))/(2+3))";	
-		Stack<BinaryTree> s = new Stack<BinaryTree>();		
-		BinaryTree tree;
-		BinaryTree tree1;
-		BinaryTree tree2;
+		JFrame frame = new JFrame("Algorithm");
+		frame.setSize(680,450);
+		JPanel panel = new JPanel();
 		
-		BinaryTree treeTemp;
-		String temp = "";
-		int tempIndex = 0;
-		for(int i = 0 ; i < input.length() ; i++)
-		{		
-			char c = input.charAt(i);
-			
-			if(Character.isDigit(c))
-			{
-				temp += c;
-				tempIndex++;
-			}
-			if (tempIndex > 0)
-			{
-				if(!Character.isDigit(c))
-				{
-					treeTemp = new BinaryTree();
-					treeTemp.addNode(i, String.valueOf(temp));
-					s.push(treeTemp);				
-					tempIndex = 0;
-					temp = "";
-				}
-			}
-			if((int)c == 43 
-					|| (int)c == 45 || (int)c == 47 
-					|| (int)c == 42)
-			{
-				treeTemp = new BinaryTree();
-				treeTemp.addNode(i,String.valueOf(c));
-				s.push(treeTemp);
-			}
-			else
-			{
-				if(c == ')'){				
-					tree2 = s.pop();
-					tree = s.pop();
-					tree1 = s.pop();
-					tree.attach(tree, tree1, tree2);
-					s.push(tree);
-				}				
-			}			
-		}
-		tree = s.pop();
-		System.out.println(tree.sum(tree.root));
-	}
+		JLabel inputLab = new JLabel("Input");
+		JTextField text = new JTextField(30);
+		JLabel ansLab = new JLabel("ANS:");
+		JTextField ansText = new JTextField(30);
+		JButton btn1 = new JButton("click");
+		
+		panel.setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.insets = new Insets(7,7,7,7);
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		panel.add(inputLab, gbc);
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+		panel.add(text, gbc);
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		panel.add(ansLab, gbc);
+		gbc.gridx = 1;
+		gbc.gridy = 1;
+		panel.add(ansText, gbc);
+		gbc.gridx = 0;
+		gbc.gridy = 2;
+		panel.add(btn1, gbc);
+		frame.add(panel);
+		
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
+		
+		
+		btn1.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				String s = text.getText();
+				ansText.setText(UserInput.dealInput(s));
+			}
+		});
+	}
 }
+

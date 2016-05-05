@@ -20,28 +20,25 @@ public class BinaryTree
 				
 				x = sum(n.leftChild);
 				y = sum(n.rightChild);
-			
 				return x+y;
 			}
 			else if (n.name.equals("-"))
 			{
+				
 				x = sum(n.leftChild);
 				y = sum(n.rightChild);
-		
 				return x-y;
 			}
 			else if (n.name.equals("*"))
 			{
 				x = sum(n.leftChild);
 				y = sum(n.rightChild);
-			
 				return x*y;
 			}
 			else if (n.name.equals("/"))
 			{
 				x = sum(n.leftChild);
 				y = sum(n.rightChild);
-				
 				return x/y;
 			}
 		return 0;
